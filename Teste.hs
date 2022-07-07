@@ -2,8 +2,8 @@ module Teste (
   chamaFuncao
 ) where
 
-chamaFuncao :: [(Char, Char, Char)] -> programPDL -> String
-chamaFuncao x = "Está contido"
+chamaFuncao :: [(Char, Char, Char)] -> [Char] -> String
+chamaFuncao x y = "Está contido"
 
 
 --chooseOperator :: [Char] -> [Char]
