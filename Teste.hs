@@ -1,33 +1,22 @@
 module Teste where
 
-verify :: [(Char, Char, Char)] -> [Char] -> String
-verify frame program = if test() then "́É um grafo induzido" else "Não ́e um grafo induzido"
+  verify :: [(Char, Char, Char)] -> [Char] -> String
+  verify frame program = if chooseOperator frame program then "́É um grafo induzido" else "Não ́e um grafo induzido"
 
+  chooseOperator :: [(Char, Char, Char)] -> [Char] -> Bool
+  chooseOperator frame program 
+    | head(program) == ';' = sequentialComposition(tail(program))
+    | head(program) == 'U' = nondeterministicChoice(tail(program))
+    | head(program) == '*' = nondeterministicChoice(tail(program))
+    | program == [] = False
+    | otherwise = False
+    
 
--- LÓGICA PRINCIPAL 
-test :: 
-  -- comparar frame e programa?
+  sequentialComposition :: [Char] -> Bool
+  sequentialComposition program = True
 
+  nondeterministicChoice :: [Char] -> Bool
+  nondeterministicChoice program = True
 
--- RECEBE O PROGRAMA PDL E COMPARA O PRIMEIRO ELEMENTO
--- CHAMA A FUNÇÃO CORRESPONDENTE
-chooseOperator :: [Char] -> [Char]
-chooseOperator program 
-  -- SÓ O PRIMEIRO ELEMENTO, ta certo?
-  | head program == ';' = sequentialComposition()
-  | head program == 'U' = nondeterministicChoice()
-  | head program == '*' = iteration()
-  | otherwise chooseOperator tail program -- VAI SER UMA LETRA OU PARENTESES, PASSAR O TAIL
-
-
-sequentialComposition ::
-  -- CHAMAR CONTADOR DE PARENTESES
-  -- FAZER FUNCAO DE ;
-
-nondeterministicChoice ::
-  -- CHAMAR CONTADOR DE PARENTESES
-  -- FAZER FUNCAO DE U
-
-iteration ::
-  -- CHAMAR CONTADOR DE PARENTESES
-  -- FAZER FUNCAO DE *
+  iteration :: [Char] -> Bool
+  iteration program = True
