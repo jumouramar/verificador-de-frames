@@ -1,22 +1,39 @@
 module Teste where
 
-  verify :: [(Char, Char, Char)] -> [Char] -> String
-  verify frame program = if chooseOperator frame program then "́É um grafo induzido" else "Não ́e um grafo induzido"
+  verifyValidity :: [(Char, Char, Char)] -> [Char] -> String
+  verifyValidity frame program = 
+    if mainFunction program then "É um grafo induzido" 
+    else "Não ́e um grafo induzido"
 
-  chooseOperator :: [(Char, Char, Char)] -> [Char] -> Bool
-  chooseOperator frame program 
+  mainFunction :: String -> Bool
+  mainFunction program =
+    if (chooseOperator(program) == "False") then False
+    else True
+
+  chooseOperator :: [Char] -> String
+  chooseOperator program 
     | head(program) == ';' = sequentialComposition(tail(program))
     | head(program) == 'U' = nondeterministicChoice(tail(program))
-    | head(program) == '*' = nondeterministicChoice(tail(program))
-    | program == [] = False
-    | otherwise = False
+    | head(program) == '*' = iteration(tail(program))
+    | program == [] = "False"
+    | otherwise = "False"
     
+  sequentialComposition :: [Char] -> [Char] -> String
+  --elemX = program[] !! 1
+ -- elemY = program[] !! 2
+  {-sequentialComposition program = putStrLn $ "elemX:" ++ elemX ++ "elemY:" ++ elemY-}
+  sequentialComposition program elemX = elemX
+  
+  nondeterministicChoice :: [Char] -> String
+  {-let elemW = program[] !! 1
+  let elemZ = program[] !! 2
+  nondeterministicChoice program = putStrLn $ "elemW:" ++ elemW ++ "elemZ:" ++ elemZ-}
+  nondeterministicChoice program = "True"
+  
+  iteration :: [Char] -> String
+  {-let elemK = program[] !! 1
+  iteration program = putStrLn $ "elemK:" ++ elemK-}
+  iteration program = "True"
 
-  sequentialComposition :: [Char] -> Bool
-  sequentialComposition program = True
-
-  nondeterministicChoice :: [Char] -> Bool
-  nondeterministicChoice program = True
-
-  iteration :: [Char] -> Bool
-  iteration program = True
+  elemX :: [Char] -> [Char]
+  elemX program = program[] !! 1 
